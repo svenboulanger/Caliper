@@ -59,32 +59,5 @@ namespace PolygonTests
 		// Check positive_area conventions
 		TEST_METHOD(When_PositiveArea_Expect_Reference01) { Assert::AreEqual(false, positive_area(Point(), Point(1, 0), Point(0, 1))); }
 		TEST_METHOD(When_PositiveArea_Expect_Reference02) { Assert::AreEqual(true, positive_area(Point(), Point(1, 0), Point(0, -1))); }
-
-		// Intersections
-		TEST_METHOD(When_IntersectionPolygon_Expect_Reference01)
-		{
-			Point a[4] = { Point(), Point(2, 0), Point(2, 2), Point(0, 2) };
-			Point b[4] = { Point(1, 1), Point(3, 1), Point(3, 3), Point(1, 3) };
-
-			// Perform the computation
-			Polygon result = Polygon();
-			check_polygon_op(a, sizeof(a) / sizeof(Point), b, sizeof(b) / sizeof(Point), BooleanOperation::Intersection, result);
-
-			// Check the results
-			Assert::AreEqual((size_t)1, result.contour_count());
-			Point e[] = { Point(2, 2), Point(1, 2), Point(1, 1), Point(2, 1) };
-			check_contour_result(e, sizeof(e) / sizeof(Point), result.contour(0));
-		}
-		TEST_METHOD(When_IntersectionPolygon_Expect_Reference02)
-		{
-			Point a[] = { Point(0, 0), Point(3, 0), Point(3, 3), Point(0, 3) };
-			Point b[] = { Point(1, 1), Point(2, 1), Point(2, 2), Point(1, 2) };
-			Polygon result = Polygon();
-			check_polygon_op(a, sizeof(a) / sizeof(Point), b, sizeof(b) / sizeof(Point), BooleanOperation::Intersection, result);
-
-			// The result is a square with a hole in it
-			Assert::AreEqual((size_t)1, result.contour_count());
-			check_contour_result(b, sizeof(b) / sizeof(Point), result.contour(0));
-		}
 	};
 }

@@ -39,6 +39,9 @@
     <ClCompile Include="martinez_difference.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="martinez_intersection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">

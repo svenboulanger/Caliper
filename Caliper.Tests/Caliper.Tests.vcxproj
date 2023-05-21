@@ -161,6 +161,7 @@
     <ClCompile Include="Caliper.Tests.cpp" />
     <ClCompile Include="martinez.cpp" />
     <ClCompile Include="martinez_difference.cpp" />
+    <ClCompile Include="martinez_intersection.cpp" />
     <ClCompile Include="martinez_union.cpp" />
     <ClCompile Include="martinez_xor.cpp" />
     <ClCompile Include="pch.cpp">
