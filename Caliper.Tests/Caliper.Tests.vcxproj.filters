@@ -27,12 +27,27 @@
     <ClCompile Include="martinez.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="martinez_union.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="polygon_check.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="martinez_xor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="martinez_difference.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="point_def.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="polygon_check.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

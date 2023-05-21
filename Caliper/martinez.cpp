@@ -1,6 +1,17 @@
 #include "martinez.h"
 #include "connector.h"
 
+/// <summary>
+/// Computes the signed area of a trapezoid formed by the points. Can be used to determine the orientation.
+/// </summary>
+/// <param name="p0">The orientation point.</param>
+/// <param name="p1">The first point.</param>
+/// <param name="p2">The second point.</param>
+/// <returns>A value that is positive is going from p1 to p2 around p0 is clockwise, negative if counter-clockwise, or 0 if collinear.</returns>
+inline long signed_area(const Point& p0, const Point& p1, const Point& p2)
+{
+	return (p2.x - p0.x) * (p1.y - p0.y) - (p1.x - p0.x) * (p2.y - p0.y);
+}
 inline bool positive_area(const Point& p0, const Point& p1, const Point& p2)
 {
 	return (p0.x - p2.x) * (p1.y - p2.y) < (p1.x - p2.x) * (p0.y - p2.y);
@@ -456,92 +467,62 @@ bool BooleanOperation::SegmentComparer::operator() (SweepEvent* e1, SweepEvent* 
 	if (e1 == e2)
 		return false;
 
-	if (e1->p.x < e2->p.x)
+	if (e1->p.x == e2->p.x)
 	{
-		// e1 comes first, so we will compare the points of e2 to e1
-		if (are_collinear(e1->p, e1->other->p, e2->other->p))
+		// Both segments start at the same x-coordinate, use the y-coordinates instead
+		if (e1->p.y == e2->p.y)
 		{
-			if (are_collinear(e1->p, e1->other->p, e2->p))
-			{
-				// All points are collinear, so it's kind of hard to give an order
-				// Use the sweep events comparer instead
-				if (e1->p == e2->p)
-					return e1 < e2;
-				SweepEventComparer comp;
-				return comp(e1, e2);
-			}
-
-			// Segment 2's "other" point is on the extension of the first segment, so we cannot use it to determine order
-			// Use the first point to determine whether it's below or above the first segment
-			// Note: we already checked whether e2->p is collinear, so "above" here means "strictly above"
-			return e1->below(e2->p);
+			// Both start points are identical, use the other segments to compare
+			long orientation = signed_area(e1->p, e1->other->p, e2->other->p);
+			if (orientation < 0)
+				return true;
+			else if (orientation > 0)
+				return false;
+			else
+				return e1 < e2; // No way to differentiate between the two, just some consistent criterion
 		}
-		else if (are_collinear(e1->p, e1->other->p, e2->p))
+		else if (e1->p.y < e2->p.y)
 		{
-			// Segment 2's point is on the extension of the first segment, so we cannot use it to determine order
-			// Use the other point of segment 2 instead
-			// Note: we already checked whether e2->other->p is collinear, so below here means "strictly below"
-			return e1->below(e2->other->p);
+			long orientation = signed_area(e1->p, e1->other->p, e2->p);
+			if (orientation < 0)
+				return true;
+			else if (orientation > 0)
+				return false;
+			else
+				return signed_area(e1->p, e1->other->p, e2->other->p) <= 0; // Return true (e1 first) if collinear
 		}
 		else
 		{
-			// The first segment starts before the second segment, so let's use the first segment as a reference
-			return e1->below(e2->p);
+			long orientation = signed_area(e2->p, e2->other->p, e1->p);
+			if (orientation > 0)
+				return true;
+			else if (orientation < 0)
+				return false;
+			else
+				return signed_area(e2->p, e2->other->p, e1->other->p) > 0; // Return false (e1 first) if collinear
 		}
 	}
-	else if (e1->p.x > e2->p.x)
+	else if (e1->p.x < e2->p.x)
 	{
-		if (are_collinear(e2->p, e2->other->p, e1->other->p))
-		{
-			if (are_collinear(e2->p, e2->other->p, e1->p))
-			{
-				// All points are collinear, so it's kind of hard to give an order
-				// Use the sweep events comparer instead
-				if (e1->p == e2->p)
-					return e1 < e2;
-				SweepEventComparer comp;
-				return comp(e1, e2);
-			}
-
-			// Segment 1's "other" point is on the extension of the first segment, so we cannot use it to determine order
-			// Use the first point to determine whether it's below or above the first segment
-			// Note: we already checked whether e2->p is collinear, so "above" here means "strictly above"
-			return e2->above(e1->p);
-		}
-		else if (are_collinear(e2->p, e2->other->p, e1->p))
-		{
-			// Segment 1's point is on the extension of the first segment, so we cannot use it to determine order
-			// Use the other point of segment 1 instead
-			// Note: we already checked whether e1->other->p is collinear, so above here means "strictly above"
-			return e2->above(e1->other->p);
-		}
+		// e1 comes first, so we will compare the points of e2 to e1
+		long orientation = signed_area(e1->p, e1->other->p, e2->p);
+		if (orientation < 0)
+			return true;
+		else if (orientation > 0)
+			return false;
 		else
-		{
-			// The second segment starts before the first segment, so let's use the first segment as a reference
-			return e2->above(e1->p);
-		}
+			return signed_area(e1->p, e1->other->p, e2->other->p) <= 0; // Return true (e1 first) if collinear.
 	}
 	else
 	{
-		// The two segments start on the same X-coordinate, so let's try using the Y-coordinates
-		if (e1->p.y < e2->p.y)
-			return e1->below(e2->other->p);
-		else if (e2->p.y < e1->p.y)
-			return e2->above(e1->other->p);
+		// e2 comes first, so we will compare the points of e1 to e2
+		long orientation = signed_area(e2->p, e2->other->p, e1->p);
+		if (orientation > 0)
+			return true;
+		else if (orientation < 0)
+			return false;
 		else
-		{
-			// They're starting at the same point, let's try figuring it out from the other points
-			if (are_collinear(e1->p, e1->other->p, e2->other->p))
-			{
-				// The two segments are completely collinear, let's just use a consistent criterion
-				return e1 < e2;
-			}
-			else
-			{
-				// The segments are not collinear, so let's prefer the bottom one!
-				return e1->below(e2->other->p);
-			}
-		}
+			return signed_area(e2->p, e2->other->p, e1->other->p) > 0; // Return false (e2 first) if collinear.
 	}
 }
 
