@@ -23,6 +23,7 @@
     <ClCompile Include="connector.cpp" />
     <ClCompile Include="contour.cpp" />
     <ClCompile Include="martinez.cpp" />
+    <ClCompile Include="martinez_sweep_event.cpp" />
     <ClCompile Include="polygon.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -30,6 +31,7 @@
     <ClInclude Include="connector.h" />
     <ClInclude Include="contour.h" />
     <ClInclude Include="martinez.h" />
+    <ClInclude Include="martinez_sweep_event.h" />
     <ClInclude Include="point.h" />
     <ClInclude Include="polygon.h" />
     <ClInclude Include="segment.h" />

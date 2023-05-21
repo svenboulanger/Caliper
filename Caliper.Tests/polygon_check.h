@@ -7,6 +7,7 @@
 #include "martinez.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+using namespace martinez;
 
 void check_polygon_op(Point* p1, int n_p1, Point* p2, int n_p2, BooleanOperation::BooleanOperationType type, Polygon& result);
 

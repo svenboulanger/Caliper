@@ -101,7 +101,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>$(SolutionDir)Caliper\x64\Debug;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>martinez.obj;contour.obj;polygon.obj;connector.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>martinez.obj;contour.obj;polygon.obj;connector.obj;martinez_sweep_event.obj;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

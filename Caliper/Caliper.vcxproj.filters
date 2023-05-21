@@ -30,6 +30,9 @@
     <ClCompile Include="connector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="martinez_sweep_event.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="contour.h">
@@ -51,6 +54,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="connector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="martinez_sweep_event.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
