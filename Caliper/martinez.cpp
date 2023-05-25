@@ -481,9 +481,9 @@ namespace martinez
 				{
 					// There is no previous segment, so that means the segment
 					// should mark an edge that goes from the outside to the inside
-					e->inside = e->in_out = false;
+					e->data.inside = e->data.in_out = false;
 				}
-				else if ((*prev)->edge_type != Normal)
+				else if ((*prev)->data.edge_type != Normal)
 				{
 					// This only happens if the previous edge is an overlapping edge.
 
@@ -495,10 +495,10 @@ namespace martinez
 						// The current segment is the overlapping segment
 						// Since the inside parameter is never going to be used, it's ok to put
 						// whatever for it
-						e->inside = true;
+						e->data.inside = true;
 
-						// There's nothing before it, so it can only be outside->inside
-						e->in_out = false;
+						// There's nothing before it, so it can only be outside->data.inside
+						e->data.in_out = false;
 					}
 					else
 					{
@@ -506,30 +506,30 @@ namespace martinez
 						// We don't know how they're ordered though...
 						sli = prev;
 						sli--;
-						if ((*prev)->polygon_type == e->polygon_type) {
-							e->in_out = !(*prev)->in_out;
-							e->inside = !(*sli)->in_out;
+						if ((*prev)->data.polygon_type == e->data.polygon_type) {
+							e->data.in_out = !(*prev)->data.in_out;
+							e->data.inside = !(*sli)->data.in_out;
 						}
 						else
 						{
-							e->in_out = !(*sli)->in_out;
-							e->inside = !(*prev)->in_out;
+							e->data.in_out = !(*sli)->data.in_out;
+							e->data.inside = !(*prev)->data.in_out;
 						}
 					}
 				}
-				else if (e->polygon_type == (*prev)->polygon_type)
+				else if (e->data.polygon_type == (*prev)->data.polygon_type)
 				{
 					// This is a normal edge from the same polygon that is not at the start of
 					// the status line
-					e->inside = (*prev)->inside;
-					e->in_out = !(*prev)->in_out;
+					e->data.inside = (*prev)->data.inside;
+					e->data.in_out = !(*prev)->data.in_out;
 				}
 				else
 				{
 					// This is a normal edge from a different polygon that is not at the start of
 					// status line
-					e->inside = !(*prev)->in_out;
-					e->in_out = (*prev)->inside;
+					e->data.inside = !(*prev)->data.in_out;
+					e->data.in_out = (*prev)->data.inside;
 				}
 
 				// Process a possible intersection between e and its neighbors
@@ -554,24 +554,24 @@ namespace martinez
 
 				// Check if the line segment belongs to the boolean operation result and
 				// add the segment to the connector if it should be part of the result
-				switch (e->edge_type)
+				switch (e->data.edge_type)
 				{
 				case Normal:
 					switch (op)
 					{
 					case Intersection:
-						if (e->other->inside)
+						if (e->other->data.inside)
 							connector.add(e->segment());
 						break;
 
 					case Union:
-						if (!e->other->inside)
+						if (!e->other->data.inside)
 							connector.add(e->segment());
 						break;
 
 					case Difference:
-						if (((e->polygon_type == Subject && !e->other->inside) ||
-							(e->polygon_type == Clipping) && e->other->inside))
+						if (((e->data.polygon_type == Subject && !e->other->data.inside) ||
+							(e->data.polygon_type == Clipping) && e->other->data.inside))
 							connector.add(e->segment());
 						break;
 
@@ -607,8 +607,8 @@ namespace martinez
 			return;
 
 		// Create the two events
-		SweepEvent* e1 = store_sweep_event(SweepEvent(s.begin(), true, pl, NULL));
-		SweepEvent* e2 = store_sweep_event(SweepEvent(s.end(), true, pl, e1));
+		SweepEvent* e1 = store_sweep_event(SweepEvent(s.begin(), true, NULL, SweepEventData(pl)));
+		SweepEvent* e2 = store_sweep_event(SweepEvent(s.end(), true, e1, SweepEventData(pl)));
 		e1->other = e2;
 
 		// Assign which of the events is the left and which one is the right
@@ -629,8 +629,8 @@ namespace martinez
 	void BooleanOperation::divide_segment(SweepEvent* e, const Point& p)
 	{
 		// Create the two new events
-		SweepEvent* r = store_sweep_event(SweepEvent(p, false, e->polygon_type, e, e->edge_type));
-		SweepEvent* l = store_sweep_event(SweepEvent(p, true, e->polygon_type, e->other, e->edge_type));
+		SweepEvent* r = store_sweep_event(SweepEvent(p, false, e, SweepEventData(e->data.polygon_type, e->data.edge_type)));
+		SweepEvent* l = store_sweep_event(SweepEvent(p, true, e->other, SweepEventData(e->data.polygon_type, e->data.edge_type)));
 
 		// Fix the pointers
 		e->other->other = l;
@@ -708,22 +708,22 @@ namespace martinez
 		{
 			// This is only possible if a NULL has been pushed on sorted_events
 			// Meaning that both edges are identical
-			e1->edge_type = e1->other->edge_type = NonContributing;
-			e2->edge_type = e2->other->edge_type = (e1->in_out == e2->in_out) ? SameTransition : DifferentTransition;
+			e1->data.edge_type = e1->other->data.edge_type = NonContributing;
+			e2->data.edge_type = e2->other->data.edge_type = (e1->data.in_out == e2->data.in_out) ? SameTransition : DifferentTransition;
 		}
 		else if (sorted_events.size() == 3)
 		{
 			// This is only possible if one of the two points of the segments are the same
-			sorted_events[1]->edge_type = sorted_events[1]->other->edge_type = NonContributing;
+			sorted_events[1]->data.edge_type = sorted_events[1]->other->data.edge_type = NonContributing;
 			if (sorted_events[0])
 			{
 				// It's the end points that were shared
-				sorted_events[0]->other->edge_type = (e1->in_out == e2->in_out) ? SameTransition : DifferentTransition;
+				sorted_events[0]->other->data.edge_type = (e1->data.in_out == e2->data.in_out) ? SameTransition : DifferentTransition;
 			}
 			else
 			{
 				// It's the begin points that were shared
-				sorted_events[2]->other->edge_type = (e1->in_out == e2->in_out) ? SameTransition : DifferentTransition;
+				sorted_events[2]->other->data.edge_type = (e1->data.in_out == e2->data.in_out) ? SameTransition : DifferentTransition;
 			}
 			divide_segment(sorted_events[0] ? sorted_events[0] : sorted_events[2]->other, sorted_events[1]->p);
 		}
@@ -735,8 +735,8 @@ namespace martinez
 				// There's a common segment, but also two separate ones
 
 				// Disable the start point of the second segment
-				sorted_events[1]->edge_type = sorted_events[1]->other->edge_type = NonContributing;
-				sorted_events[2]->edge_type = (e1->in_out == e2->in_out) ? SameTransition : DifferentTransition;
+				sorted_events[1]->data.edge_type = sorted_events[1]->other->data.edge_type = NonContributing;
+				sorted_events[2]->data.edge_type = (e1->data.in_out == e2->data.in_out) ? SameTransition : DifferentTransition;
 				divide_segment(sorted_events[0], sorted_events[1]->p);
 				divide_segment(sorted_events[1], sorted_events[2]->p);
 				return;
@@ -746,7 +746,7 @@ namespace martinez
 				// One segment completely includes the other one
 
 				// Disable the inner segment, we'll store such information in the other overlapping segment
-				sorted_events[1]->edge_type = sorted_events[1]->other->edge_type = NonContributing;
+				sorted_events[1]->data.edge_type = sorted_events[1]->other->data.edge_type = NonContributing;
 
 				// We need to divide the longer segment in 3 parts
 				divide_segment(sorted_events[0], sorted_events[1]->p);
@@ -754,7 +754,7 @@ namespace martinez
 				divide_segment(second_part, sorted_events[2]->p);
 
 				// Update the overlapping segment to have a special status
-				second_part->edge_type = second_part->other->edge_type = (e1->in_out == e2->in_out) ? SameTransition : DifferentTransition;
+				second_part->data.edge_type = second_part->other->data.edge_type = (e1->data.in_out == e2->data.in_out) ? SameTransition : DifferentTransition;
 			}
 		}
 	}

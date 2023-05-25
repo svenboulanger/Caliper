@@ -57,7 +57,7 @@ namespace PolygonTests
 		TEST_METHOD(When_Overlap_Expect_Reference08) { check_intersections(Point(), Point(0, 2), Point(0, 1), Point(0, 3), 2, Point(0, 1), Point(0, 2)); }
 
 		// Check positive_area conventions
-		TEST_METHOD(When_PositiveArea_Expect_Reference01) { Assert::AreEqual(false, positive_area(Point(), Point(1, 0), Point(0, 1))); }
-		TEST_METHOD(When_PositiveArea_Expect_Reference02) { Assert::AreEqual(true, positive_area(Point(), Point(1, 0), Point(0, -1))); }
+		TEST_METHOD(When_PositiveArea_Expect_Reference01) { Assert::AreEqual(false, sweep_line::turns_clockwise(Point(), Point(1, 0), Point(0, 1))); }
+		TEST_METHOD(When_PositiveArea_Expect_Reference02) { Assert::AreEqual(true, sweep_line::turns_clockwise(Point(), Point(1, 0), Point(0, -1))); }
 	};
 }
