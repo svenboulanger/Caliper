@@ -1,8 +1,6 @@
 #pragma once
 
 #include "sweep_event.h"
-#include "point.h"
-#include "segment.h"
 #include <set>
 
 namespace martinez
@@ -36,6 +34,9 @@ namespace martinez
 		Clipping
 	};
 
+	/// <summary>
+	/// The sweep event data necessary for the Martinez et al. algorithm.
+	/// </summary>
 	struct SweepEventData
 	{
 		/// <summary>
@@ -57,6 +58,14 @@ namespace martinez
 		/// Describes whether we are inside an outer polygon.
 		/// </summary>
 		bool inside;
+
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		SweepEventData()
+			: polygon_type(), edge_type(), in_out(), inside()
+		{
+		}
 
 		/// <summary>
 		/// Constructor.

@@ -42,6 +42,9 @@
     <ClCompile Include="martinez_intersection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sweep_union.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">

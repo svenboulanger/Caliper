@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "martinez.h"
+#include "sweep_martinez.h"
 #include "point_def.h"
 #include "polygon_check.h"
 

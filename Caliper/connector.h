@@ -1,7 +1,7 @@
 #pragma once
 
 #include "segment.h"
-#include "martinez.h"
+#include "sweep_martinez.h"
 #include <list>
 
 class PointChain

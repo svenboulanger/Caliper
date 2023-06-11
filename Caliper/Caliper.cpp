@@ -3,12 +3,24 @@
 
 #include <iostream>
 #include "point.h"
+#include <set>
 using namespace std;
 
 int main()
 {
-    Point a(1, -20);
-    cout << a;
+	set<int> set;
+	std::set<int>::iterator it1, it2, it3;
+	it1 = set.insert(1).first;
+	it2 = set.insert(2).first;
+	it3 = set.insert(3).first;
+
+	cout << *it1 << ' ' << *it2 << ' ' << *it3 << std::endl;
+	set.erase(2);
+
+	it2++;
+	cout << *it2 << endl;
+
+	cout << "done";
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

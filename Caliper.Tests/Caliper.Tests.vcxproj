@@ -101,7 +101,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>$(SolutionDir)Caliper\x64\Debug;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>martinez.obj;contour.obj;polygon.obj;connector.obj;martinez_sweep_event.obj;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>contour.obj;segment.obj;polygon.obj;connector.obj;sweep_martinez.obj;sweep_union.obj;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -172,6 +172,7 @@
     </ClCompile>
     <ClCompile Include="point.cpp" />
     <ClCompile Include="polygon_check.cpp" />
+    <ClCompile Include="sweep_union.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />

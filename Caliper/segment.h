@@ -50,6 +50,16 @@ public:
 	}
 };
 
+/// <summary>
+/// Finds the intersection between two segments.
+/// </summary>
+/// <param name="seg0">The first segment.</param>
+/// <param name="seg1">The second segment.</param>
+/// <param name="pi0">The first intersection point.</param>
+/// <param name="pi1">The second intersection point, if any.</param>
+/// <returns>Returns 0 if there is no intersection; 1 if there is one intersection and 2 if there is an overlapping segment.</returns>
+int find_intersection(const Segment& seg0, const Segment& seg1, Point& pi0, Point& pi1);
+
 inline ostream& operator<< (ostream& o, const Segment& p) {
 	return o << p.begin() << "-" << p.end();
 }

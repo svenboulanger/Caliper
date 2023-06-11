@@ -24,13 +24,16 @@
     <ClCompile Include="polygon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="martinez.cpp">
+    <ClCompile Include="sweep_martinez.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="connector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="martinez_sweep_event.cpp">
+    <ClCompile Include="sweep_union.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="segment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -50,16 +53,22 @@
     <ClInclude Include="segment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="martinez.h">
+    <ClInclude Include="sweep_martinez.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="connector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="martinez_sweep_event.h">
+    <ClInclude Include="sweep_event_martinez.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="sweep_event.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sweep_event_union.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sweep_union.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -22,20 +22,23 @@
     <ClCompile Include="Caliper.cpp" />
     <ClCompile Include="connector.cpp" />
     <ClCompile Include="contour.cpp" />
-    <ClCompile Include="martinez.cpp" />
-    <ClCompile Include="martinez_sweep_event.cpp" />
+    <ClCompile Include="segment.cpp" />
+    <ClCompile Include="sweep_martinez.cpp" />
     <ClCompile Include="polygon.cpp" />
+    <ClCompile Include="sweep_union.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Caliper.Polygons\framework.h" />
     <ClInclude Include="connector.h" />
     <ClInclude Include="contour.h" />
-    <ClInclude Include="martinez.h" />
-    <ClInclude Include="martinez_sweep_event.h" />
+    <ClInclude Include="sweep_martinez.h" />
+    <ClInclude Include="sweep_event_martinez.h" />
     <ClInclude Include="point.h" />
     <ClInclude Include="polygon.h" />
     <ClInclude Include="segment.h" />
     <ClInclude Include="sweep_event.h" />
+    <ClInclude Include="sweep_union.h" />
+    <ClInclude Include="sweep_event_union.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

@@ -4,13 +4,10 @@
 #include <set>
 #include <queue>
 #include <vector>
-#include "martinez_sweep_event.h"
+#include "sweep_event_martinez.h"
 
 namespace martinez
 {
-
-	int find_intersection(const Segment& seg0, const Segment& seg1, Point& pi0, Point& pi1);
-
 	class BooleanOperation {
 	public:
 		/// <summary>

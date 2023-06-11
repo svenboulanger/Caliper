@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "martinez.h"
+#include "sweep_martinez.h"
 #include "point_def.h"
 #include "polygon_check.h"
 
@@ -8,7 +8,7 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace PolygonTests
 {
-	TEST_CLASS(IntersectionTests)
+	TEST_CLASS(MartinezIntersectionTests)
 	{
 	public:
 		TEST_METHOD(When_OverlappingBoxes_Expect_Reference01)
@@ -28,7 +28,7 @@ namespace PolygonTests
 
 			// Perform the computation
 			Polygon result = Polygon();
-			check_polygon_op(a, sizeof(a) / sizeof(Point), b, sizeof(b) / sizeof(Point), BooleanOperation::Intersection, result);
+			check_martinez_op(a, sizeof(a) / sizeof(Point), b, sizeof(b) / sizeof(Point), BooleanOperation::Intersection, result);
 
 			// Check the results
 			Assert::AreEqual((size_t)1, result.contour_count());
@@ -40,7 +40,7 @@ namespace PolygonTests
 			Point a[] = { Point(0, 0), Point(3, 0), Point(3, 3), Point(0, 3) };
 			Point b[] = { Point(1, 1), Point(2, 1), Point(2, 2), Point(1, 2) };
 			Polygon result = Polygon();
-			check_polygon_op(a, sizeof(a) / sizeof(Point), b, sizeof(b) / sizeof(Point), BooleanOperation::Intersection, result);
+			check_martinez_op(a, sizeof(a) / sizeof(Point), b, sizeof(b) / sizeof(Point), BooleanOperation::Intersection, result);
 
 			// The result is a square with a hole in it
 			Assert::AreEqual((size_t)1, result.contour_count());
@@ -51,7 +51,7 @@ namespace PolygonTests
 			Point a[] = { Point(0, 0), Point(3, 0), Point(3, 3), Point(0, 3) };
 			Point b[] = { Point(1, 3), Point(1, 4), Point(2, 4), Point(2, 3) };
 			Polygon result = Polygon();
-			check_polygon_op(a, sizeof(a) / sizeof(Point), b, sizeof(b) / sizeof(Point), BooleanOperation::Intersection, result);
+			check_martinez_op(a, sizeof(a) / sizeof(Point), b, sizeof(b) / sizeof(Point), BooleanOperation::Intersection, result);
 			Assert::AreEqual((size_t)0, result.contour_count());
 		}
 		TEST_METHOD(When_BoxesOverlapCenterTopInside_Expect_Reference)
@@ -59,7 +59,7 @@ namespace PolygonTests
 			Point a[] = { Point(0, 0), Point(3, 0), Point(3, 3), Point(0, 3) };
 			Point b[] = { Point(1, 2), Point(2, 2), Point(2, 3), Point(1, 3) };
 			Polygon result = Polygon();
-			check_polygon_op(a, sizeof(a) / sizeof(Point), b, sizeof(b) / sizeof(Point), BooleanOperation::Intersection, result);
+			check_martinez_op(a, sizeof(a) / sizeof(Point), b, sizeof(b) / sizeof(Point), BooleanOperation::Intersection, result);
 			Assert::AreEqual((size_t)1, result.contour_count());
 			check_contour_result(b, sizeof(b) / sizeof(Point), result.contour(0));
 		}
@@ -68,7 +68,7 @@ namespace PolygonTests
 			Point a[] = { Point(0, 0), Point(3, 0), Point(3, 3), Point(0, 3) };
 			Point b[] = { Point(-1, 1), Point(0, 1), Point(0, 2), Point(-1, 2) };
 			Polygon result = Polygon();
-			check_polygon_op(a, sizeof(a) / sizeof(Point), b, sizeof(b) / sizeof(Point), BooleanOperation::Intersection, result);
+			check_martinez_op(a, sizeof(a) / sizeof(Point), b, sizeof(b) / sizeof(Point), BooleanOperation::Intersection, result);
 			Assert::AreEqual((size_t)0, result.contour_count());
 		}
 		TEST_METHOD(When_BoxesOverlapLeftCenterInside_Expect_Reference)
@@ -76,7 +76,7 @@ namespace PolygonTests
 			Point a[] = { Point(0, 0), Point(3, 0), Point(3, 3), Point(0, 3) };
 			Point b[] = { Point(0, 1), Point(1, 1), Point(1, 2), Point(0, 2) };
 			Polygon result = Polygon();
-			check_polygon_op(a, sizeof(a) / sizeof(Point), b, sizeof(b) / sizeof(Point), BooleanOperation::Intersection, result);
+			check_martinez_op(a, sizeof(a) / sizeof(Point), b, sizeof(b) / sizeof(Point), BooleanOperation::Intersection, result);
 			Assert::AreEqual((size_t)1, result.contour_count());
 			check_contour_result(b, sizeof(b) / sizeof(Point), result.contour(0));
 		}
@@ -85,7 +85,7 @@ namespace PolygonTests
 			Point a[] = { Point(0, 0), Point(3, 0), Point(3, 3), Point(0, 3) };
 			Point b[] = { Point(1, 0), Point(1, -1), Point(2, -1), Point(2, 0) };
 			Polygon result = Polygon();
-			check_polygon_op(a, sizeof(a) / sizeof(Point), b, sizeof(b) / sizeof(Point), BooleanOperation::Intersection, result);
+			check_martinez_op(a, sizeof(a) / sizeof(Point), b, sizeof(b) / sizeof(Point), BooleanOperation::Intersection, result);
 			Assert::AreEqual((size_t)0, result.contour_count());
 		}
 		TEST_METHOD(When_BoxesOverlapCenterBottomInside_Expect_Reference)
@@ -93,7 +93,7 @@ namespace PolygonTests
 			Point a[] = { Point(0, 0), Point(3, 0), Point(3, 3), Point(0, 3) };
 			Point b[] = { Point(1, 0), Point(2, 0), Point(2, 1), Point(1, 1) };
 			Polygon result = Polygon();
-			check_polygon_op(a, sizeof(a) / sizeof(Point), b, sizeof(b) / sizeof(Point), BooleanOperation::Intersection, result);
+			check_martinez_op(a, sizeof(a) / sizeof(Point), b, sizeof(b) / sizeof(Point), BooleanOperation::Intersection, result);
 			Assert::AreEqual((size_t)1, result.contour_count());
 			check_contour_result(b, sizeof(b) / sizeof(Point), result.contour(0));
 		}
@@ -102,7 +102,7 @@ namespace PolygonTests
 			Point a[] = { Point(0, 0), Point(3, 0), Point(3, 3), Point(0, 3) };
 			Point b[] = { Point(3, 1), Point(4, 1), Point(4, 2), Point(3, 2) };
 			Polygon result = Polygon();
-			check_polygon_op(a, sizeof(a) / sizeof(Point), b, sizeof(b) / sizeof(Point), BooleanOperation::Intersection, result);
+			check_martinez_op(a, sizeof(a) / sizeof(Point), b, sizeof(b) / sizeof(Point), BooleanOperation::Intersection, result);
 			Assert::AreEqual((size_t)0, result.contour_count());
 		}
 		TEST_METHOD(When_BoxesOverlapRightCenterInside_Expect_Reference)
@@ -110,7 +110,7 @@ namespace PolygonTests
 			Point a[] = { Point(0, 0), Point(3, 0), Point(3, 3), Point(0, 3) };
 			Point b[] = { Point(2, 1), Point(3, 1), Point(3, 2), Point(2, 2) };
 			Polygon result = Polygon();
-			check_polygon_op(a, sizeof(a) / sizeof(Point), b, sizeof(b) / sizeof(Point), BooleanOperation::Intersection, result);
+			check_martinez_op(a, sizeof(a) / sizeof(Point), b, sizeof(b) / sizeof(Point), BooleanOperation::Intersection, result);
 			Assert::AreEqual((size_t)1, result.contour_count());
 			check_contour_result(b, sizeof(b) / sizeof(Point), result.contour(0));
 		}
@@ -119,7 +119,7 @@ namespace PolygonTests
 			Point a[] = { Point(0, 0), Point(3, 0), Point(3, 3), Point(0, 3) };
 			Point b[] = { Point(0, 2), Point(1, 2), Point(1, 3), Point(0, 3) };
 			Polygon result = Polygon();
-			check_polygon_op(a, sizeof(a) / sizeof(Point), b, sizeof(b) / sizeof(Point), BooleanOperation::Intersection, result);
+			check_martinez_op(a, sizeof(a) / sizeof(Point), b, sizeof(b) / sizeof(Point), BooleanOperation::Intersection, result);
 			Assert::AreEqual((size_t)1, result.contour_count());
 			check_contour_result(b, sizeof(b) / sizeof(Point), result.contour(0));
 		}
@@ -128,7 +128,7 @@ namespace PolygonTests
 			Point a[] = { Point(0, 0), Point(3, 0), Point(3, 3), Point(0, 3) };
 			Point b[] = { Point(0, 0), Point(1, 0), Point(1, 1), Point(0, 1) };
 			Polygon result = Polygon();
-			check_polygon_op(a, sizeof(a) / sizeof(Point), b, sizeof(b) / sizeof(Point), BooleanOperation::Intersection, result);
+			check_martinez_op(a, sizeof(a) / sizeof(Point), b, sizeof(b) / sizeof(Point), BooleanOperation::Intersection, result);
 			Assert::AreEqual((size_t)1, result.contour_count());
 			check_contour_result(b, sizeof(b) / sizeof(Point), result.contour(0));
 		}
@@ -137,7 +137,7 @@ namespace PolygonTests
 			Point a[] = { Point(0, 0), Point(3, 0), Point(3, 3), Point(0, 3) };
 			Point b[] = { Point(2, 0), Point(3, 0), Point(3, 1), Point(2, 1) };
 			Polygon result = Polygon();
-			check_polygon_op(a, sizeof(a) / sizeof(Point), b, sizeof(b) / sizeof(Point), BooleanOperation::Intersection, result);
+			check_martinez_op(a, sizeof(a) / sizeof(Point), b, sizeof(b) / sizeof(Point), BooleanOperation::Intersection, result);
 			Assert::AreEqual((size_t)1, result.contour_count());
 			check_contour_result(b, sizeof(b) / sizeof(Point), result.contour(0));
 		}
@@ -146,7 +146,7 @@ namespace PolygonTests
 			Point a[] = { Point(0, 0), Point(3, 0), Point(3, 3), Point(0, 3) };
 			Point b[] = { Point(2, 2), Point(3, 2), Point(3, 3), Point(2, 3) };
 			Polygon result = Polygon();
-			check_polygon_op(a, sizeof(a) / sizeof(Point), b, sizeof(b) / sizeof(Point), BooleanOperation::Intersection, result);
+			check_martinez_op(a, sizeof(a) / sizeof(Point), b, sizeof(b) / sizeof(Point), BooleanOperation::Intersection, result);
 			Assert::AreEqual((size_t)1, result.contour_count());
 			check_contour_result(b, sizeof(b) / sizeof(Point), result.contour(0));
 		}
