@@ -2,25 +2,20 @@
 //
 
 #include <iostream>
+#include <fstream>
 #include "point.h"
-#include <set>
+#include "gdsii.h"
 using namespace std;
 
 int main()
 {
-	set<int> set;
-	std::set<int>::iterator it1, it2, it3;
-	it1 = set.insert(1).first;
-	it2 = set.insert(2).first;
-	it3 = set.insert(3).first;
-
-	cout << *it1 << ' ' << *it2 << ' ' << *it3 << std::endl;
-	set.erase(2);
-
-	it2++;
-	cout << *it2 << endl;
-
-	cout << "done";
+	ifstream file("../x64/Debug/inv.gds2", ifstream::in | ifstream::binary);
+	gdsii::Library lib = gdsii::Library();
+	if (!file)
+		cout << "Could not open" << endl;
+	else
+		cout << (gdsii::read_library(file, lib) ? "ok" : "not ok") << endl;
+	file.close();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

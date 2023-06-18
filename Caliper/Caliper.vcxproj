@@ -22,6 +22,7 @@
     <ClCompile Include="Caliper.cpp" />
     <ClCompile Include="connector.cpp" />
     <ClCompile Include="contour.cpp" />
+    <ClCompile Include="gdsii.cpp" />
     <ClCompile Include="segment.cpp" />
     <ClCompile Include="sweep_martinez.cpp" />
     <ClCompile Include="polygon.cpp" />
@@ -31,6 +32,8 @@
     <ClInclude Include="..\Caliper.Polygons\framework.h" />
     <ClInclude Include="connector.h" />
     <ClInclude Include="contour.h" />
+    <ClInclude Include="elements.h" />
+    <ClInclude Include="gdsii.h" />
     <ClInclude Include="sweep_martinez.h" />
     <ClInclude Include="sweep_event_martinez.h" />
     <ClInclude Include="point.h" />

@@ -13,63 +13,84 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Polygons">
+      <UniqueIdentifier>{1abffe1d-6ac0-482d-8b97-2b8b98e6696b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Polygons">
+      <UniqueIdentifier>{d327a3f3-7f4c-4b44-94dd-89ada2cc0ac8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GDSII">
+      <UniqueIdentifier>{21ef2f06-0310-45fe-ac20-a44f656c5caf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GDSII">
+      <UniqueIdentifier>{9facf9ed-8627-47f3-bfa8-236623f71cf6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="connector.cpp">
+      <Filter>Source Files\Polygons</Filter>
+    </ClCompile>
+    <ClCompile Include="contour.cpp">
+      <Filter>Source Files\Polygons</Filter>
+    </ClCompile>
+    <ClCompile Include="polygon.cpp">
+      <Filter>Source Files\Polygons</Filter>
+    </ClCompile>
+    <ClCompile Include="segment.cpp">
+      <Filter>Source Files\Polygons</Filter>
+    </ClCompile>
+    <ClCompile Include="sweep_martinez.cpp">
+      <Filter>Source Files\Polygons</Filter>
+    </ClCompile>
+    <ClCompile Include="sweep_union.cpp">
+      <Filter>Source Files\Polygons</Filter>
+    </ClCompile>
+    <ClCompile Include="gdsii.cpp">
+      <Filter>Source Files\GDSII</Filter>
+    </ClCompile>
     <ClCompile Include="Caliper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="contour.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="polygon.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sweep_martinez.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="connector.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sweep_union.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="segment.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="contour.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\Caliper.Polygons\framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="point.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="polygon.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="segment.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sweep_martinez.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="contour.h">
+      <Filter>Header Files\Polygons</Filter>
     </ClInclude>
     <ClInclude Include="connector.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Polygons</Filter>
     </ClInclude>
-    <ClInclude Include="sweep_event_martinez.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="point.h">
+      <Filter>Header Files\Polygons</Filter>
+    </ClInclude>
+    <ClInclude Include="polygon.h">
+      <Filter>Header Files\Polygons</Filter>
+    </ClInclude>
+    <ClInclude Include="segment.h">
+      <Filter>Header Files\Polygons</Filter>
     </ClInclude>
     <ClInclude Include="sweep_event.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Polygons</Filter>
+    </ClInclude>
+    <ClInclude Include="sweep_event_martinez.h">
+      <Filter>Header Files\Polygons</Filter>
     </ClInclude>
     <ClInclude Include="sweep_event_union.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Polygons</Filter>
+    </ClInclude>
+    <ClInclude Include="sweep_martinez.h">
+      <Filter>Header Files\Polygons</Filter>
     </ClInclude>
     <ClInclude Include="sweep_union.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Polygons</Filter>
+    </ClInclude>
+    <ClInclude Include="gdsii.h">
+      <Filter>Header Files\GDSII</Filter>
+    </ClInclude>
+    <ClInclude Include="elements.h">
+      <Filter>Header Files\GDSII</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

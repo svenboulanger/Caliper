@@ -179,5 +179,14 @@ namespace PolygonTests
 			Assert::AreEqual((size_t)1, result.contour_count());
 			check_contour_result(r, sizeof(r) / sizeof(Point), result.contour(0));
 		}
+		TEST_METHOD(When_SelfIntersecting_Expect_Reference)
+		{
+			Point a[] = { Point(0, 0), Point(3, 0), Point(3, 3), Point(2, 3), Point(2, 1), Point(1, 1), Point(1, 2), Point(2, 2), Point(2, 3), Point(0, 3) };
+
+			// Perform the computation
+			Polygon result = Polygon();
+			check_sweep_union(a, sizeof(a) / sizeof(Point), result);
+			Assert::AreEqual((size_t)2, result.contour_count());
+		}
 	};
 }

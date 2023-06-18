@@ -63,10 +63,14 @@ namespace sweep_union
 
 		while (!eq.empty())
 		{
+			// Retrieve the next event
 			e = eq.top();
 			eq.pop();
 			if (e->data.overlapped)
+			{
+				// The edge has been made obsolete due to an overlapping edge
 				continue;
+			}
 
 			if (e->is_left)
 			{
@@ -82,9 +86,15 @@ namespace sweep_union
 					prev = status_line.end();
 
 				if (prev != status_line.end())
+				{
+					// Look at the previous segment and update the current value
 					e->data.out_ins_before = (*prev)->data.out_ins_before + (*prev)->data.out_ins;
+				}
 				else
+				{
+					// If a segment is divided, this value might have already been set unwantedly
 					e->data.out_ins_before = 0;
+				}
 
 				// Process possible intersections
 				bool is_overlapping = false;
