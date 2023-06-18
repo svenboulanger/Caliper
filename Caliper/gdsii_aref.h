@@ -2,6 +2,8 @@
 
 #include "gdsii_elements.h"
 #include "gdsii_colrow.h"
+#include "gdsii_transform.h"
+#include "gdsii_xy.h"
 
 namespace gdsii
 {
@@ -82,6 +84,21 @@ namespace gdsii
 				return false;
 
 			return deserialize_end(stream, header);
+		}
+
+		/// <summary>
+		/// Override equality.
+		/// </summary>
+		/// <param name="other">The other array reference.</param>
+		/// <returns>Returns <c>true</c> if both are equal; otherwise, <c>false</c>.</returns>
+		bool operator== (const Aref& other) const {
+			return elflags == other.elflags &&
+				plex == other.plex &&
+				colrow == other.colrow &&
+				sname == other.sname &&
+				strans == other.strans &&
+				coordinate == other.coordinate &&
+				properties == other.properties;
 		}
 	};
 }

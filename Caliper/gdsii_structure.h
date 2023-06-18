@@ -1,9 +1,11 @@
 #pragma once
 
 #include "gdsii.h"
+#include "gdsii_aref.h"
 #include "gdsii_elements.h"
 #include "gdsii_boundary.h"
 #include "gdsii_box.h"
+#include "gdsii_node.h"
 #include "gdsii_path.h"
 #include "gdsii_sref.h"
 #include "gdsii_text.h"
@@ -35,7 +37,7 @@ namespace gdsii
 		/// </summary>
 		/// <param name="str_name">The name of the structure.</param>
 		Structure()
-			: name(), elements(), boundaries(), srefs(), paths()
+			: name(), elements(), arefs(), boundaries(), boxes(), nodes(), paths(), srefs(), texts()
 		{
 		}
 
@@ -87,6 +89,13 @@ namespace gdsii
 			{
 				switch (header.type)
 				{
+				case constants::Aref:
+					arefs.push_front(Aref());
+					if (!arefs.front().deserialize(stream, header))
+						return false;
+					elements.push_back(&arefs.front());
+					break;
+
 				case constants::Boundary:
 					boundaries.push_front(Boundary());
 					if (!boundaries.front().deserialize(stream, header))
@@ -99,6 +108,13 @@ namespace gdsii
 					if (!boxes.front().deserialize(stream, header))
 						return false;
 					elements.push_back(&boxes.front());
+					break;
+
+				case constants::Node:
+					nodes.push_front(Node());
+					if (!nodes.front().deserialize(stream, header))
+						return false;
+					elements.push_back(&nodes.front());
 					break;
 
 				case constants::Path:
@@ -147,10 +163,12 @@ namespace gdsii
 
 	private:
 		vector<Element*> elements;
+		forward_list<Aref> arefs;
 		forward_list<Boundary> boundaries;
-		forward_list<Sref> srefs;
-		forward_list<Path> paths;
 		forward_list<Box> boxes;
+		forward_list<Node> nodes;
+		forward_list<Path> paths;
+		forward_list<Sref> srefs;
 		forward_list<Text> texts;
 	};
 
