@@ -66,12 +66,19 @@ namespace gdsii
 		/// <param name="other">The other box.</param>
 		/// <returns>Returns <c>true</c> if both are equal; otherwise, <c>false</c>.</returns>
 		bool operator== (const Box& other) const {
-			return elflags == other.elflags &&
-				plex == other.plex &&
-				layer == other.layer &&
-				boxtype == other.boxtype &&
-				points == other.points &&
-				properties == other.properties;
+			if (elflags != other.elflags ||
+				plex != other.plex ||
+				layer != other.layer ||
+				boxtype != other.boxtype ||
+				properties != other.properties)
+				return false;
+
+			for (char i = 0; i < 5; i++)
+			{
+				if (points[i] != other.points[i])
+					return false;
+			}
+			return true;
 		}
 	};
 }

@@ -51,7 +51,7 @@
     <ClCompile Include="sweep_union.cpp">
       <Filter>Source Files\Polygons</Filter>
     </ClCompile>
-    <ClCompile Include="gdsii_read_write.cpp">
+    <ClCompile Include="gdsii_serdes.cpp">
       <Filter>Source Files\GDSII</Filter>
     </ClCompile>
   </ItemGroup>

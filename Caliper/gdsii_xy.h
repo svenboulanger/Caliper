@@ -104,6 +104,16 @@ namespace gdsii
 		}
 
 		/// <summary>
+		/// Constructor.
+		/// </summary>
+		/// <param name="i_x">The x-coordinate.</param>
+		/// <param name="i_y">The y-coordinate.</param>
+		XY(int i_x, int i_y)
+			: x(i_x), y(i_y)
+		{
+		}
+
+		/// <summary>
 		/// Serializes the XY to the stream.
 		/// </summary>
 		/// <param name="stream">The stream.</param>
@@ -146,6 +156,15 @@ namespace gdsii
 		bool operator== (const XY& other) const {
 			return (x == other.x) &&
 				(y == other.y);
+		}
+
+		/// <summary>
+		/// Overrides inequality.
+		/// </summary>
+		/// <param name="other">The other XY.</param>
+		/// <returns>Returns <c>false</c> if both are not equal; otherwise, <c>false</c>.</returns>
+		bool operator!= (const XY& other) const {
+			return (x != other.x) || (y != other.y);
 		}
 	};
 }

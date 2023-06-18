@@ -47,7 +47,7 @@ namespace gdsii
 			serialize_header(stream);
 
 			write_short_record(stream, constants::Layer, layer);
-			write_short_record(stream, constants::Datatype, layer);
+			write_short_record(stream, constants::Datatype, datatype);
 
 			// Optional path type
 			if (pathtype != 0)

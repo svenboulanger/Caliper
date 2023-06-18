@@ -110,9 +110,6 @@
     <ClInclude Include="gdsii_aref.h">
       <Filter>Header Files\GDSII\Elements</Filter>
     </ClInclude>
-    <ClInclude Include="gdsii_colrow.h">
-      <Filter>Header Files\GDSII\Elements</Filter>
-    </ClInclude>
     <ClInclude Include="gdsii_text.h">
       <Filter>Header Files\GDSII\Elements</Filter>
     </ClInclude>
@@ -142,6 +139,9 @@
     </ClInclude>
     <ClInclude Include="gdsii_elements.h">
       <Filter>Header Files\GDSII\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="gdsii_colrow.h">
+      <Filter>Header Files\GDSII</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
