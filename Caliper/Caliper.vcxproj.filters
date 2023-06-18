@@ -25,6 +25,9 @@
     <Filter Include="Source Files\GDSII">
       <UniqueIdentifier>{9facf9ed-8627-47f3-bfa8-236623f71cf6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\GDSII\Elements">
+      <UniqueIdentifier>{d08cf23d-5d09-471d-9897-dab947e055c5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="connector.cpp">
@@ -45,11 +48,14 @@
     <ClCompile Include="sweep_union.cpp">
       <Filter>Source Files\Polygons</Filter>
     </ClCompile>
-    <ClCompile Include="gdsii.cpp">
-      <Filter>Source Files\GDSII</Filter>
-    </ClCompile>
     <ClCompile Include="Caliper.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gdsii_constants.cpp">
+      <Filter>Source Files\GDSII</Filter>
+    </ClCompile>
+    <ClCompile Include="gdsii_io.cpp">
+      <Filter>Source Files\GDSII</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -89,8 +95,53 @@
     <ClInclude Include="gdsii.h">
       <Filter>Header Files\GDSII</Filter>
     </ClInclude>
-    <ClInclude Include="elements.h">
+    <ClInclude Include="gdsii_constants.h">
       <Filter>Header Files\GDSII</Filter>
+    </ClInclude>
+    <ClInclude Include="gdsii_path.h">
+      <Filter>Header Files\GDSII\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="gdsii_sref.h">
+      <Filter>Header Files\GDSII\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="gdsii_boundary.h">
+      <Filter>Header Files\GDSII\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="gdsii_aref.h">
+      <Filter>Header Files\GDSII\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="gdsii_colrow.h">
+      <Filter>Header Files\GDSII\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="gdsii_text.h">
+      <Filter>Header Files\GDSII\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="gdsii_box.h">
+      <Filter>Header Files\GDSII\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="gdsii_node.h">
+      <Filter>Header Files\GDSII\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="gdsii_structure.h">
+      <Filter>Header Files\GDSII</Filter>
+    </ClInclude>
+    <ClInclude Include="gdsii_io.h">
+      <Filter>Header Files\GDSII</Filter>
+    </ClInclude>
+    <ClInclude Include="gdsii_transform.h">
+      <Filter>Header Files\GDSII</Filter>
+    </ClInclude>
+    <ClInclude Include="gdsii_xy.h">
+      <Filter>Header Files\GDSII</Filter>
+    </ClInclude>
+    <ClInclude Include="gdsii_timestamp.h">
+      <Filter>Header Files\GDSII</Filter>
+    </ClInclude>
+    <ClInclude Include="gdsii_units.h">
+      <Filter>Header Files\GDSII</Filter>
+    </ClInclude>
+    <ClInclude Include="gdsii_elements.h">
+      <Filter>Header Files\GDSII\Elements</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

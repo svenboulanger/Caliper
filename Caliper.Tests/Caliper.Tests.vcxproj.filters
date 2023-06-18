@@ -13,37 +13,46 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Polygons">
+      <UniqueIdentifier>{73ecdcd9-c322-48f6-a0cc-0a25a593f6b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GDSII">
+      <UniqueIdentifier>{ffc3d862-87aa-4f3b-a963-dd5b9058657a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Caliper.Tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pch.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="point.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="martinez.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="martinez_union.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="polygon_check.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="martinez_xor.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Polygons</Filter>
     </ClCompile>
     <ClCompile Include="martinez_difference.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Polygons</Filter>
     </ClCompile>
     <ClCompile Include="martinez_intersection.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Polygons</Filter>
+    </ClCompile>
+    <ClCompile Include="martinez_union.cpp">
+      <Filter>Source Files\Polygons</Filter>
+    </ClCompile>
+    <ClCompile Include="martinez_xor.cpp">
+      <Filter>Source Files\Polygons</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Source Files\Polygons</Filter>
+    </ClCompile>
+    <ClCompile Include="point.cpp">
+      <Filter>Source Files\Polygons</Filter>
+    </ClCompile>
+    <ClCompile Include="polygon_check.cpp">
+      <Filter>Source Files\Polygons</Filter>
     </ClCompile>
     <ClCompile Include="sweep_union.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Polygons</Filter>
+    </ClCompile>
+    <ClCompile Include="gdsii_read_write.cpp">
+      <Filter>Source Files\GDSII</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -54,6 +63,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="polygon_check.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gdsii_def.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

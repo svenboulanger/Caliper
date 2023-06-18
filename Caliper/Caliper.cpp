@@ -5,16 +5,19 @@
 #include <fstream>
 #include "point.h"
 #include "gdsii.h"
+#include <direct.h>
+#include <limits.h>
+#include <iostream>
 using namespace std;
 
 int main()
 {
-	ifstream file("../x64/Debug/inv.gds2", ifstream::in | ifstream::binary);
+	ifstream file("../x64/Debug/inv.gds", ifstream::in | ifstream::binary);
 	gdsii::Library lib = gdsii::Library();
 	if (!file)
 		cout << "Could not open" << endl;
 	else
-		cout << (gdsii::read_library(file, lib) ? "ok" : "not ok") << endl;
+		cout << (lib.deserialize(file) ? "ok" : "not ok") << endl;
 	file.close();
 }
 
